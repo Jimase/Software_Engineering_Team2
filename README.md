@@ -1,0 +1,2 @@
+# Software_Engineering_Team2
+本仓库作为软件工程第一次结对编程作业
