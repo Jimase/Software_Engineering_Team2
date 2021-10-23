@@ -194,17 +194,14 @@ def game(screen, settings):
 
     cards_array = []
     cards_init(cards_array, settings)
-    print(len(cards_array))
-    print("over")
-
+    # print(len(cards_array))
+    # print("over")
     show_cards(screen, cards_array, settings)
-
     # 在场的牌，围成圈的牌
     cards_in_show = []
     max_nums = 10  # 在场牌的最大数量
     # 圈中间的牌
     center_card = [0, []]    # 最顶层的牌，目前积压的牌
-
     turn = 2    # 默认的游戏先手玩家
     player1 = Player(1)
     player2 = Player(2)
@@ -220,7 +217,7 @@ def game(screen, settings):
         for event in events:
             # 如果按键类型为 窗口右上角的八叉 或 ESC （目前ESC好像不管用）
             if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
-                # 程序推出
+                # 程序退出
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -245,7 +242,6 @@ def game(screen, settings):
                             turn = 1
                         break
                 if turn == 1 :
-                    # sorted(player1.card_array, key=lambda x: x.kind)
                     for card in player1.card_array:
                         if in_rect(event.pos, card.rect):
                             card.rect.centerx, card.rect.centery = settings.screen_width / 2, settings.screen_height / 2
@@ -360,8 +356,6 @@ def game(screen, settings):
         position_correct(cards_in_show, settings, screen)
         # 更新画面
         pygame.display.update()
-
-
 def game_wait_close():
     while True:
         for event in pygame.event.get():

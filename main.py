@@ -334,13 +334,13 @@ def begin_ui(login_re_msg):
                     create_game_re_msg = Create_Game(login_re_msg['data']['token'],True)
                     UUID = create_game_re_msg['data']['uuid']
                     print("把你的uuid分享给好友吧！")
-                    GamePVP.game(screen,settings,login_re_msg['data']['token'],UUID,2)
+                    GamePVP.game(screen,settings,login_re_msg['data']['token'],UUID,1)
                     flag = False
                 elif mode == 2:                                       #公开对局
                     create_game_re_msg = Create_Game(login_re_msg['data']['token'],False)
                     UUID = create_game_re_msg['data']['uuid']
                     print("把你的uuid分享给好友吧！")
-                    GamePVP.game(screen,settings,login_re_msg['data']['token'],UUID,2)
+                    GamePVP.game(screen,settings,login_re_msg['data']['token'],UUID,1)
                     flag = False                                    #返回
                 elif mode == 3:
                    continue
