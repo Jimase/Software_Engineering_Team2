@@ -1,6 +1,5 @@
 import pygame
 import settings
-
 class Player():
     def __init__(self, number):
         self.card_array = []
@@ -40,7 +39,6 @@ class Player():
                 #看得到对手牌
                 screen.blit(card.image, (card_x, card_y))
                 card_x += card.rect.width - settings.hand_card_distance
-
     def receive_card(self, turn, cards):
         if turn == self.number:  # 如果是当前玩家的回合
             for card in cards:
@@ -62,6 +60,5 @@ class Player():
         win_image_rect.centerx, win_image_rect.centery = self.rect.centerx, win_image_rect.bottom
         screen.blit(win_image, win_image_rect)
         pygame.display.update()
-
         win_sound = pygame.mixer.Sound("images/win.wav")
         win_sound.play()
