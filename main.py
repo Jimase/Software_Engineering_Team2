@@ -225,7 +225,6 @@ def pvp_start():
                     return last_choice_mode
         clock.tick(settings.fps)
         pygame.display.update()
-
 def pm_start():
     """
     模式选择页面 创建 加入 返回\n
@@ -268,7 +267,6 @@ def pm_start():
                     return last_choice_mode
         clock.tick(settings.fps)
         pygame.display.update()
-
 def Create_start():
     """
     模式选择页面 创建 加入 返回\n
@@ -311,7 +309,6 @@ def Create_start():
                     return last_choice_mode
         clock.tick(settings.fps)
         pygame.display.update()
-
 def begin_ui(login_re_msg):
     flag = True
     while flag:

@@ -520,7 +520,7 @@ def game(screen, settings, TOKEN, UUID, player_id):
             if len(cards_in_show) <= 0:
                 # 说明 场上无牌了，
                 background_sound.stop()
-                if len(player1.card_array) < len(player2.card_array):
+                if len(player1.card_array) > len(player2.card_array):
                     print("player1 win")
                     player1.win(screen, settings)
                 else:
