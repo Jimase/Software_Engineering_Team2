@@ -1,3 +1,0 @@
-from AIwithouUI import Query_Game
-
-Query_Game('eyJhbGciOiJIUzUxMiIsImlhdCI6MTYzNTAwNDU5NSwiZXhwIjoxNjM1ODY4NTk1fQ.eyJpZCI6NzV9.4Fbs73nhYYYlWe0YkZPZzvnlCk4-ODVHZpjFrgvIlENeKHGu9BCfbwpzkOJlfjRsTMkd4I1W98rv3ryu4b9VIQ','4lgpmuv3zocfxmqt')

@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
 # @Time : 2021/10/22 23:29
-# @Author : Hao
+# @Author : Jimase
 # @File : AIwithouUI.py
 import requests
 import json
 import time
-
 # 黑桃:S == 0
 # 红桃:H == 1
 # 梅花:C == 2
 # 方块:D == 3
-
 
 
 num_org = [13, 13, 13, 13]
@@ -366,7 +364,6 @@ def game(TOKEN, UUID):
 
 def main():
     pass
-
 
 if __name__ == '__main__':
     print("这是AI参站系统,为了运行速度，我们放弃了UI可视化界面，如果需要请换一台电脑用左边的AIpy来观战")
