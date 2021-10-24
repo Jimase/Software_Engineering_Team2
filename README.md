@@ -6,6 +6,9 @@
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-V2.0-brightgreen)
 <br />
 <p align="center">
+  <a href="https://github.com/shaojintian/Best_README_template/">
+    <img src="https://github.com/Jimase/Software_Engineering_Team2/blob/main/cards_images/Logo_Pigpng" alt="Logo" width="80" height="80">
+  </a>
   <h3 align="center">"有趣的"卡牌游戏</h3>
   <p align="center">
     一个"有趣的"卡牌游戏，快喊上你的好友来一场双人对战吧！
