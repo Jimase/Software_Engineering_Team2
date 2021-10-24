@@ -341,8 +341,8 @@ def begin_ui(login_re_msg):
                     flag = False                                    #返回
                 elif mode == 3:
                    continue
-            elif(mode == 2):                  #加入对局
-                UUID = input("麻烦输入下好友给你的uuid：")
+            elif(mode == 2):
+                UUID = input("麻烦输入下好友给你的uuid：,如果不知道UUID可以自己创建一个、也可以自己点击运行Query.py搜索他人房间")
                 GamePVP.game(screen,settings,login_re_msg['data']['token'],UUID,2)
             elif(mode == 3):
                 continue       #返回
@@ -355,6 +355,15 @@ def begin_ui(login_re_msg):
         # uuid =''
         # #加入游戏
         # Join_Game(login_re_msg['data']['token'] , uuid )
+def Query_Game(token, page_size, page_num):
+    headers = {'Authorization': token}
+    params = {"page_size": str(page_size), "page_num": str(page_num)}
+    r = requests.get(url='http://172.17.173.97:9000/api/game/index', headers=headers, params=params)
+    # print(r.text)
+    user_dict = json.loads(r.text)
+    for i in user_dict['data']['games']:
+        print(i)
+    return user_dict
 
 def main():
     login_re_msg = login()    # 登录页面

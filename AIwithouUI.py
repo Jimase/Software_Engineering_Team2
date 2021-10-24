@@ -187,16 +187,25 @@ def solusion(center_card,card_ai,card_people,ans):
         ans[0] = '0'
         ans[1] = ''
         return 0
+
     else:
+        Array = [[13,13,13,13],
+                 [0 ,0 ,0 ,0 ],
+                 [0 ,0 ,0 ,0 ],
+                 [0 ,0 ,0 ,0 ]]
+        #   S H C D 0123
+        # o
+        # a
+        # p
+        # c
+
+
         for card in card_ai:
             if (card.get_color() != lc_show):
                 ans[0] = '1'
                 ans[1] = card.get_color()+card.get_size()
                 return 0
 
-        ans[0] = '0'
-        ans[1] = ''
-        return 0
 
     ans[0] = '0'
     ans[1] = ''
@@ -363,9 +372,6 @@ def game(TOKEN, UUID):
 
 
 def main():
-    pass
-
-if __name__ == '__main__':
     print("这是AI参站系统,为了运行速度，我们放弃了UI可视化界面，如果需要请换一台电脑用左边的AIpy来观战")
     student_id = '031902515'
     password = '31415926swh'
@@ -380,5 +386,8 @@ if __name__ == '__main__':
         cre_msg = Create_Game(TOKEN, True)
         UUID = cre_msg['data']['uuid']
         game(TOKEN, UUID)
+
+if __name__ == '__main__':
+    main()
 
 

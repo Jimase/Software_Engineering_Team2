@@ -69,12 +69,14 @@ filetree
 ├── main.py
 ├── settings.py
 ├── requirement.txt
-└── ui.py
+├── ui.py
+├── ARCHITECRURE.py
+└── settings.py
 ```
 
 ### 贡献者
-@Jimase
-@CC
+[@Jimase](https://github.com/Jimase)
+[@CC](https://github.com/min200101)
 
 #### 如何参与开源项目
 贡献使开源社区成为一个学习、激励和创造的绝佳场所。你所作的任何贡献都是**非常感谢**的。

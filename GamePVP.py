@@ -35,9 +35,10 @@ def Query_Game(token, page_size, page_num):
     headers = {'Authorization': token}
     params = {"page_size": str(page_size), "page_num": str(page_num)}
     r = requests.get(url='http://172.17.173.97:9000/api/game/index', headers=headers, params=params)
-    print(r.text)
+    # print(r.text)
     user_dict = json.loads(r.text)
-    print(user_dict)
+    for i in user_dict['data']['games']:
+        print(i)
     return user_dict
 def Get_last(token, uuid):
     '''
