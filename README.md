@@ -2,18 +2,10 @@
 # 猪尾巴
 本项目为软件工程实践课第一次结对编程
 
-<!-- PROJECT SHIELDS -->
-[![Contributors][contributors-shield]][contributors-url]
-[![MIT License][license-shield]][license-url]
-
-
-<!-- PROJECT LOGO -->
+![TensorFlow](https://img.shields.io/badge/language-python-brightgreen)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-V2.0-brightgreen)
 <br />
 <p align="center">
-  <a href="https://github.com/shaojintian/Best_README_template/">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
   <h3 align="center">"有趣的"卡牌游戏</h3>
   <p align="center">
     一个"有趣的"卡牌游戏，快喊上你的好友来一场双人对战吧！
