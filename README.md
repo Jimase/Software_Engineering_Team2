@@ -7,7 +7,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Jimase/Software_Engineering_Team2/">
-    <img src="https://github.com/Jimase/Software_Engineering_Team2/blob/main/cards_images/Logo_Pigpng" alt="Logo" width="80" height="80">
+    <img src="https://github.com/Jimase/Software_Engineering_Team2/blob/main/cards_images/Logo_Pig.png" alt="Logo" width="80" height="80">
   </a>
   <h3 align="center">"有趣的"卡牌游戏</h3>
   <p align="center">
