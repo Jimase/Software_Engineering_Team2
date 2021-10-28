@@ -60,8 +60,9 @@ git clone https://github.com/Jimase/Software_Engineering_Team2.git
 > 2. 若点击为加入对局，回到控制台，输入好友给你的uuid即可开始对据。 
 
 ###### **AI对战步骤**
-1. 打开AIwithoutUI.py
+1. 打开AIwithouUI.py
 2. 编译运行按照提示即可
+3.游戏结束会报错是正常的，重新运行就可以了
 ### 文件目录说明
 ```
 filetree 

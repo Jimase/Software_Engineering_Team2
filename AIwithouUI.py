@@ -250,6 +250,11 @@ def solusion(center_card,card_ai,card_people,ans):
                         ans[0] = '1'
                         ans[1] = card.get_color()+card.get_size()
                         return 0
+                for card in card_ai :
+                    if card.get_color() != num_to_color(lc_show):
+                        ans[0] = '1'
+                        ans[1] = card.get_color()+card.get_size()
+                        return 0
                 ans[0] = '0'
                 return 0
             else:
@@ -261,14 +266,60 @@ def solusion(center_card,card_ai,card_people,ans):
                 ans[0] = '0'
                 return 0
 
-
+        elif la == lp:
+            if color_to_num(lc_show) != last_num:
+                for card in card_ai:
+                    if card.get_color() == num_to_color(last_num):
+                        ans[0] = '1'
+                        ans[1] = card.get_color() + card.get_size()
+                        return 0
+                for card in card_ai:
+                    if card.get_color()!=num_to_color(last_num):
+                        ans[0] = '1'
+                        ans[1] = card.get_color() + card.get_size()
+                        return 0
+            else:
+                for card in card_ai:
+                    if card.get_color()!=num_to_color(last_num):
+                        ans[0] = '1'
+                        ans[1] = card.get_color() + card.get_size()
+                        return 0
+                ans[0] = '0'
+                ans[1] = ''
+                return 0
         else:
             ans[0] = '0'
             ans[1] = ''
-            return
+            return 0
 
     elif lo != 1:
-        if la + lc <= lp - 3:
+        if la + lc - lo > lp +2*lo:
+            for card in card_ai:
+                if card.get_color() != lc_show:      #绝对不能吃
+                    ans[0] = '1'
+                    ans[1] = card.get_color() + card.get_size()
+                    return 0
+
+            ans[0] = '0'
+            return 0
+        elif la + lc - lo > lp:
+            for card in card_ai:
+                if card.get_color() != lc_show:      #绝对不能吃
+                    ans[0] = '1'
+                    ans[1] = card.get_color() + card.get_size()
+                    return 0
+
+            ans[0] = '0'
+            return 0
+        # if la > lc :
+        #     if lp + lc - lo > la + lo*2:
+        #         for card in card_ai:
+        #             if card.get_color() == lc_show:  # 大胆吃
+        #                 ans[0] = '1'
+        #                 ans[1] = card.get_color() + card.get_size()
+        #                 return 0
+
+        elif la + lc <= lp + 2:
             for card in card_ai:
                 if card.get_color() == lc_show:             #大胆吃
                     ans[0] = '1'
@@ -279,40 +330,20 @@ def solusion(center_card,card_ai,card_people,ans):
             ans[1] = ' '
             return 0
 
-        else: #la+lc>lp
-            if (la+lc) + lo*2 -1 > lp:  #拿了就输了
-                for card in card_ai:
-                    if card.get_color() != lc_show:
-                        ans[0] = '1'
-                        ans[1] = card.get_color()+card.get_size()
-                        return 0
+                                         #la+lc>lp
+        elif (la+lc) + lo*2 -1 >= lp - lo:          #拿了就输了
+            for card in card_ai:
+                if card.get_color() != lc_show:
+                    ans[0] = '1'
+                    ans[1] = card.get_color()+card.get_size()
+                    return 0
 
-                ans[0] = '0'
-                ans[1] = ''
-                return 0
-            else :
-                if la > lp :    # 大概率能让对手拿
-                    if lp + lc + 1 - lo > la - 1 + lo*2: #那就务必施压
-                        for card in card_ai:
-                            if card.get_color() != lc_show:
-                                ans[0] = '1'
-                                ans[1] = card.get_color() + card.get_size()
-                                return 0
-
-                        ans[0] = '0'
-                        ans[1] = ''
-                        return 0
-                    else :
-                        for card in card_ai:
-                            if card.get_color() != lc_show:
-                                ans[0] = '1'
-                                ans[1] = card.get_color() + card.get_size()
-                                return 0
-
-                        ans[0] = '0'
-                        ans[1] = ''
-                        return 0
-                else:
+            ans[0] = '0'
+            ans[1] = ''
+            return 0
+        else :
+            if la > lp :    # 大概率能让对手拿
+                if lp + lc + 1 - lo > la - 1 + lo*2: #那就务必施压
                     for card in card_ai:
                         if card.get_color() != lc_show:
                             ans[0] = '1'
@@ -322,16 +353,31 @@ def solusion(center_card,card_ai,card_people,ans):
                     ans[0] = '0'
                     ans[1] = ''
                     return 0
+                else :
+                    for card in card_ai:
+                        if card.get_color() != lc_show:
+                            ans[0] = '1'
+                            ans[1] = card.get_color() + card.get_size()
+                            return 0
 
+                    ans[0] = '0'
+                    ans[1] = ''
+                    return 0
+            else:
+                for card in card_ai:
+                    if card.get_color() != lc_show:
+                        ans[0] = '1'
+                        ans[1] = card.get_color() + card.get_size()
+                        return 0
+
+                ans[0] = '0'
+                ans[1] = ''
+                return 0
 
     else:
         ans[0] = '0'
         ans[1] = ''
         return 520
-
-
-
-
 def game(TOKEN, UUID):
 
     center_card = ['0', []]
@@ -358,19 +404,19 @@ def game(TOKEN, UUID):
     while True:
         # time.sleep(10)
         cnt = 0
-        print("ai:", end=' ')
+        print("ai:      ", end=' ')
         for card in card_ai:
             print(card.get_color() + card.get_size(), end=' ')
             cnt+=1
 
         print('')
-        print("people:", end=' ')
+        print("people:  ", end=' ')
         for card in card_people:
             print(card.get_color() + card.get_size(), end=' ')
             cnt+=1
 
         print()
-        print("center", end=' ')
+        print("center   ", end=' ')
         for card in center_card[1]:
             print(card.get_color() + card.get_size(), end=' ')
             cnt += 1
@@ -496,22 +542,21 @@ def game(TOKEN, UUID):
                     turn += 1
                     if turn > 2:
                         turn = 1
-
-
 def main():
     print("这是AI参站系统,为了运行速度，我们放弃了UI可视化界面，如果需要请换一台电脑用左边的AIpy来观战")
     student_id = '031902515'
     password = '31415926swh'
     login_dict = __login(student_id, password)
     TOKEN = login_dict['data']['token']
-    mode = input("加入还是创建对局？1：加入,2:创建")
+    mode = input("加入还是创建对局？输入1：加入,输入2:创建")
     if mode == '1':
         UUID = input("请输入别人给你的房间的UUID")
         Join_Game(TOKEN, UUID)
         game(TOKEN, UUID)
     else:
-        cre_msg = Create_Game(TOKEN, True)
+        cre_msg = Create_Game(TOKEN, False)
         UUID = cre_msg['data']['uuid']
+        print("把uuid复制给你的对手吧")
         game(TOKEN, UUID)
 
 if __name__ == '__main__':

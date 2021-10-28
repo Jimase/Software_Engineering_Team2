@@ -187,12 +187,10 @@ def num_to_color(num):
     else:
         input("见鬼了")
         return ' '
-
-
 def solusion(center_card,card_ai,card_people,ans):
 
-    ans[0] = '0'
-    return 0
+    # ans[0] = '0'
+    # return 0
 
     lc_show = 'U'       #中心展示的花色
     la = len(card_ai)
@@ -222,26 +220,27 @@ def solusion(center_card,card_ai,card_people,ans):
         card_array[0][i] = 13 - card_array[1][i] - card_array[2][i] - card_array[3][i]
     #没牌没啥好说的,就翻牌吧
 
-    # print(card_array)
+    print(card_array)
     if la == 0 :
         ans[0] = '0'
         ans[1] = ''
         return 0
     #必胜 随便我怎么拿牌
 
-
     elif la + 1 + (lo-1)*2 + lc < lp - lo + 1 :
         ans[0] = '0'
         ans[1] = ''
         return 0
 
-
     #必最佳操作
-    elif lo == 1:            #对于最后一张牌
+    elif lo <= 3:            #对于最后一张牌
+        ans[0] = input('1')
+        ans[1] = input('2')
+        return 0
         last_num = 0
         for i in range(3):
             if card_array[i] == 1:
-                last_num = i                                #知道最后一张牌的花色鸭
+                last_num = i                                #知道最后一张牌的花色了
 
         if la < lp:                                         #牌比对手少、无进攻压力
             if color_to_num(lc_show) != last_num:           #翻掉算了
@@ -252,25 +251,158 @@ def solusion(center_card,card_ai,card_people,ans):
             elif color_to_num(lc_show) == last_num:           #颜色是一样的
                 for card in card_ai :
                     if color_to_num(card.get_color()) != last_num:  #打一张不一样花色的就可以了
-                        ans[0] == '1'
-                        ans[1] == card.get_color()+card.get_size()
+                        ans[0] = '1'
+                        ans[1] = card.get_color()+card.get_size()
                         return 0
+                ans[0] = '0'
+                return 0
 
         elif la > lp:                                           #牌比对手多、我有进攻压力
             if color_to_num(lc_show) != last_num:
                 for card in card_ai :
                     if card.get_color() == num_to_color(last_num):
-                        ans[0] == '1'
-                        ans[1] == card.get_color()+card.get_size()
+                        ans[0] = '1'
+                        ans[1] = card.get_color()+card.get_size()
                         return 0
+                for card in card_ai :
+                    if card.get_color() != num_to_color(lc_show):
+                        ans[0] = '1'
+                        ans[1] = card.get_color()+card.get_size()
+                        return 0
+                ans[0] = '0'
+                return 0
+            else:
+                for card in card_ai:
+                    if card.get_color() != num_to_color(last_num):
+                        ans[0] = '1'
+                        ans[1] = card.get_color()+card.get_size()
+                        return 0
+                ans[0] = '0'
+                return 0
 
+        elif la == lp:
+            if color_to_num(lc_show) != last_num:
+                for card in card_ai:
+                    if card.get_color() == num_to_color(last_num):
+                        ans[0] = '1'
+                        ans[1] = card.get_color() + card.get_size()
+                        return 0
+                for card in card_ai:
+                    if card.get_color()!=num_to_color(last_num):
+                        ans[0] = '1'
+                        ans[1] = card.get_color() + card.get_size()
+                        return 0
+            else:
+                for card in card_ai:
+                    if card.get_color()!=num_to_color(last_num):
+                        ans[0] = '1'
+                        ans[1] = card.get_color() + card.get_size()
+                        return 0
+                ans[0] = '0'
+                ans[1] = ''
+                return 0
         else:
             ans[0] = '0'
             ans[1] = ''
-            return
-
+            return 0
+    # elif lo == 2:            #对于最后一张牌
+    #     # last_num1 = 0
+    #     # last_num2 = 0
+    #     for i in range(3):
+    #         if card_array[i] == 1:
+    #             last_num = i                                #知道最后一张牌的花色了
+    #
+    #     if la < lp:                                         #牌比对手少、无进攻压力
+    #         if color_to_num(lc_show) != last_num:           #翻掉算了
+    #             ans[0] = '0'
+    #             ans[1] = ''
+    #             return 0
+    #
+    #         elif color_to_num(lc_show) == last_num:           #颜色是一样的
+    #             for card in card_ai :
+    #                 if color_to_num(card.get_color()) != last_num:  #打一张不一样花色的就可以了
+    #                     ans[0] = '1'
+    #                     ans[1] = card.get_color()+card.get_size()
+    #                     return 0
+    #             ans[0] = '0'
+    #             return 0
+    #
+    #     elif la > lp:                                           #牌比对手多、我有进攻压力
+    #         if color_to_num(lc_show) != last_num:
+    #             for card in card_ai :
+    #                 if card.get_color() == num_to_color(last_num):
+    #                     ans[0] = '1'
+    #                     ans[1] = card.get_color()+card.get_size()
+    #                     return 0
+    #             for card in card_ai :
+    #                 if card.get_color() != num_to_color(lc_show):
+    #                     ans[0] = '1'
+    #                     ans[1] = card.get_color()+card.get_size()
+    #                     return 0
+    #             ans[0] = '0'
+    #             return 0
+    #         else:
+    #             for card in card_ai:
+    #                 if card.get_color() != num_to_color(last_num):
+    #                     ans[0] = '1'
+    #                     ans[1] = card.get_color()+card.get_size()
+    #                     return 0
+    #             ans[0] = '0'
+    #             return 0
+    #
+    #     elif la == lp:
+    #         if color_to_num(lc_show) != last_num:
+    #             for card in card_ai:
+    #                 if card.get_color() == num_to_color(last_num):
+    #                     ans[0] = '1'
+    #                     ans[1] = card.get_color() + card.get_size()
+    #                     return 0
+    #             for card in card_ai:
+    #                 if card.get_color()!=num_to_color(last_num):
+    #                     ans[0] = '1'
+    #                     ans[1] = card.get_color() + card.get_size()
+    #                     return 0
+    #         else:
+    #             for card in card_ai:
+    #                 if card.get_color()!=num_to_color(last_num):
+    #                     ans[0] = '1'
+    #                     ans[1] = card.get_color() + card.get_size()
+    #                     return 0
+    #             ans[0] = '0'
+    #             ans[1] = ''
+    #             return 0
+    #     else:
+    #         ans[0] = '0'
+    #         ans[1] = ''
+    #         return 0
     elif lo != 1:
-        if la + lc < lp:
+        if la + lc - lo > lp +2*lo:
+            for card in card_ai:
+                if card.get_color() != lc_show:      #绝对不能吃
+                    ans[0] = '1'
+                    ans[1] = card.get_color() + card.get_size()
+                    return 0
+
+            ans[0] = '0'
+            return 0
+        elif la + lc - lo > lp:
+            for card in card_ai:
+                if card.get_color() != lc_show:      #绝对不能吃
+                    ans[0] = '1'
+                    ans[1] = card.get_color() + card.get_size()
+                    return 0
+
+            ans[0] = '0'
+            return 0
+        # if la > lc :
+        #     if lp + lc - lo > la + lo*2:
+        #         for card in card_ai:
+        #             if card.get_color() == lc_show:  # 大胆吃
+        #                 ans[0] = '1'
+        #                 ans[1] = card.get_color() + card.get_size()
+        #                 return 0
+
+        elif la + lc <= lp +  5:
             for card in card_ai:
                 if card.get_color() == lc_show:             #大胆吃
                     ans[0] = '1'
@@ -281,7 +413,8 @@ def solusion(center_card,card_ai,card_people,ans):
             ans[1] = ' '
             return 0
 
-        else:
+                                         #la+lc>lp
+        elif (la+lc) + lo*2 -1 >= lp - lo:          #拿了就输了
             for card in card_ai:
                 if card.get_color() != lc_show:
                     ans[0] = '1'
@@ -291,170 +424,153 @@ def solusion(center_card,card_ai,card_people,ans):
             ans[0] = '0'
             ans[1] = ''
             return 0
+        else :
+            if la > lp :    # 大概率能让对手拿
+                if lp + lc + 1 - lo > la - 1 + lo*2: #那就务必施压
+                    for card in card_ai:
+                        if card.get_color() != lc_show:
+                            ans[0] = '1'
+                            ans[1] = card.get_color() + card.get_size()
+                            return 0
+
+                    ans[0] = '0'
+                    ans[1] = ''
+                    return 0
+                else :
+                    for card in card_ai:
+                        if card.get_color() != lc_show:
+                            ans[0] = '1'
+                            ans[1] = card.get_color() + card.get_size()
+                            return 0
+
+                    ans[0] = '0'
+                    ans[1] = ''
+                    return 0
+            else:
+                for card in card_ai:
+                    if card.get_color() != lc_show:
+                        ans[0] = '1'
+                        ans[1] = card.get_color() + card.get_size()
+                        return 0
+
+                ans[0] = '0'
+                ans[1] = ''
+                return 0
 
     else:
         ans[0] = '0'
         ans[1] = ''
         return 520
+# from AIwithouUI import solusion
+# def solusion(center_card,card_ai,card_people,ans):
+#
+#     # ans[0] = '0'
+#     # return 0
+#
+#     lc_show = 'U'       #中心展示的花色
+#     la = len(card_ai)
+#     lp = len(card_people)
+#     lc = len(center_card)
+#     if center_card[0] != '0':
+#         lc += 1
+#         lc_show = center_card[0].get_color()
+#     lo = 13*4 - la - lp - lc
+#
+#
+#     card_array =[ [13,13,13,13],
+#                   [0 ,0 ,0 ,0 ],
+#                   [0 ,0 ,0 ,0 ],
+#                   [0 ,0 ,0 ,0 ] ]
+#
+#     for card in card_ai:
+#         card_array[2][color_to_num(card.get_color())] +=1
+#     for card in card_people:
+#         card_array[3][color_to_num(card.get_color())] +=1
+#     for card in center_card[1]:
+#         card_array[1][color_to_num(card.get_color())] +=1
+#     if center_card[0]!= '0':
+#         card_array[1][color_to_num(center_card[0].get_color())] += 1
+#
+#     for i in range(3):
+#         card_array[0][i] = 13 - card_array[1][i] - card_array[2][i] - card_array[3][i]
+#     #没牌没啥好说的,就翻牌吧
+#
+#     # print(card_array)
+#     if la == 0 :
+#         ans[0] = '0'
+#         ans[1] = ''
+#         return 0
+#     #必胜 随便我怎么拿牌
+#
+#
+#     elif la + 1 + (lo-1)*2 + lc < lp - lo + 1 :
+#         ans[0] = '0'
+#         ans[1] = ''
+#         return 0
+#
+#
+#     #必最佳操作
+#     elif lo == 1:            #对于最后一张牌
+#         last_num = 0
+#         for i in range(3):
+#             if card_array[i] == 1:
+#                 last_num = i                                #知道最后一张牌的花色鸭
+#
+#         if la < lp:                                         #牌比对手少、无进攻压力
+#             if color_to_num(lc_show) != last_num:           #翻掉算了
+#                 ans[0] = '0'
+#                 ans[1] = ''
+#                 return 0
+#
+#             elif color_to_num(lc_show) == last_num:           #颜色是一样的
+#                 for card in card_ai :
+#                     if color_to_num(card.get_color()) != last_num:  #打一张不一样花色的就可以了
+#                         ans[0] == '1'
+#                         ans[1] == card.get_color()+card.get_size()
+#                         return 0
+#
+#         elif la > lp:                                           #牌比对手多、我有进攻压力
+#             if color_to_num(lc_show) != last_num:
+#                 for card in card_ai :
+#                     if card.get_color() == num_to_color(last_num):
+#                         ans[0] == '1'
+#                         ans[1] == card.get_color()+card.get_size()
+#                         return 0
+#
+#         else:
+#             ans[0] = '0'
+#             ans[1] = ''
+#             return
+#
+#     elif lo != 1:
+#         if la + lc < lp:
+#             for card in card_ai:
+#                 if card.get_color() == lc_show:             #大胆吃
+#                     ans[0] = '1'
+#                     ans[1] = card.get_color() + card.get_size()
+#                     return 0
+#
+#             ans[0] = '0'
+#             ans[1] = ' '
+#             return 0
+#
+#         else:
+#             for card in card_ai:
+#                 if card.get_color() != lc_show:
+#                     ans[0] = '1'
+#                     ans[1] = card.get_color()+card.get_size()
+#                     return 0
+#
+#             ans[0] = '0'
+#             ans[1] = ''
+#             return 0
+#
+#     else:
+#         ans[0] = '0'
+#         ans[1] = ''
+#         return 520
 
-def game(TOKEN, UUID):
-    center_card = ['0', []]
-    card_ai = []
-    card_people = []
-    wait = True
-    your_first = True
-
-    while wait:
-        last_msg = Get_last(TOKEN, UUID)
-        if last_msg['code'] == 200:
-            your_first = last_msg['data']['your_turn']
-            wait = False
-
-    ai = 1  # 默认你是玩家1
-    turn = 1
-    if your_first == True:
-        print("你是先手")
-    else:
-        print("你是后手")
-        turn = 2
-    ans = ['', '']
-
-    while True:
-        # time.sleep(10)
-        cnt = 0
-        print("ai:     ", end=' ')
-        for card in card_ai:
-            print(card.get_color() + card.get_size(), end=' ')
-            cnt += 1
-
-        print('')
-        print("people: ", end=' ')
-        for card in card_people:
-            print(card.get_color() + card.get_size(), end=' ')
-            cnt += 1
-
-        print()
-        print("center: ", end=' ')
-        for card in center_card[1]:
-            print(card.get_color() + card.get_size(), end=' ')
-            cnt += 1
-        if center_card[0] != '0':
-            print(center_card[0].get_color() + center_card[0].get_size())
-            cnt += 1
-
-        # print(cnt)
-        # input("断点")
-
-        if turn == ai:
-            ans[0] = ''
-            ans[1] = ''
-
-            solusion(center_card, card_ai, card_people, ans)
-
-            if ans[0] == '0':
-                # 如果选择了翻牌
-                re_do_card = Do_card(TOKEN, UUID, '0')
-                a = Card()
-                a.set_by_msg(re_do_card)
-
-                if center_card[0] == '0':  # 若中间没牌
-                    center_card[0] = a
-                elif a.get_color() != center_card[0].get_color():
-                    center_card[1].append(center_card[0])
-                    center_card[0] = a
-                else:
-                    center_card[1].append(a)
-                    center_card[1].append(center_card[0])
-
-                    card_ai.extend(center_card[1])
-
-                    center_card = ['0', []]  # 清空
-
-                turn += 1
-                if turn > 2:
-                    turn = 1
-            elif ans[0] == '1':
-                a = Card()
-                a.set_by_msg(ans[1])
-                Do_card(TOKEN, UUID, '1', a.get_color() + a.get_size())
-                for card in card_ai:
-                    if card.get_color() == a.get_color():
-                        if card.get_size() == card.get_size():
-                            card_ai.remove(card)
-                            break
-
-                if center_card[0] == '0':  # 若中间没牌
-                    center_card[0] = a
-                elif a.get_color() != center_card[0].get_color():
-                    center_card[1].append(center_card[0])
-                    center_card[0] = a
-                else:
-                    center_card[1].append(a)
-                    center_card[1].append(center_card[0])
-                    card_ai.extend(center_card[1])
-                    center_card = ['0', []]  # 清空
-
-                turn += 1
-                if turn > 2:
-                    turn = 1
-
-        else:
-            # 获取对手信息
-            re_msg = Get_last(TOKEN, UUID)
-            # 还没轮到我说明对手还没出
-            if re_msg['data']['your_turn'] == False:
-                # print("对手还没出牌，在等等")
-                pass
-
-                # 轮到我说明对手已经出牌了
-            elif re_msg['data']['your_turn'] == True:
-                if re_msg['data']['last_code'][2] == '0':
-                    a = Card()
-                    a.set_by_msg(re_msg)
-
-                    if center_card[0] == '0':  # 若中间没牌
-                        center_card[0] = a
-                    elif a.get_color() != center_card[0].get_color():
-                        center_card[1].append(center_card[0])
-                        center_card[0] = a
-                    else:
-                        center_card[1].append(a)
-                        center_card[1].append(center_card[0])
-
-                        card_people.extend(center_card[1])
-
-                        center_card = ['0', []]  # 清空
-
-                    turn += 1
-                    if turn > 2:
-                        turn = 1
-
-                elif re_msg['data']['last_code'][2] == '1':
-                    a = Card()
-                    a.set_by_msg(re_msg)
-
-                    for card in card_people:
-                        if card.get_color() == a.get_color():
-                            if card.get_size() == card.get_size():
-                                card_people.remove(card)
-                                break
-
-                    if center_card[0] == '0':  # 若中间没牌
-                        center_card[0] = a
-                    elif a.get_color() != center_card[0].get_color():
-                        center_card[1].append(center_card[0])
-                        center_card[0] = a
-                    else:
-                        center_card[1].append(a)
-                        center_card[1].append(center_card[0])
-
-                        card_people.extend(center_card[1])
-
-                        center_card = ['0', []]  # 清空
-
-                    turn += 1
-                    if turn > 2:
-                        turn = 1
+from AIwithouUI import game
 
 
 def main():
