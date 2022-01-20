@@ -97,9 +97,6 @@ filetree
 ### 版本控制
 该项目使用Git进行版本管理。您可以在repository参看当前可用版本。
 
-### 版权说明
-该项目签署了MIT 授权许可，详情请参阅 [LICENSE.txt](https://github.com/shaojintian/Best_README_template/blob/master/LICENSE.txt)
-
 ### 鸣谢
 - [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 - [Img Shields](https://shields.io)
